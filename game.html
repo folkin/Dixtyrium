@@ -6,33 +6,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Dixtyrium</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://bootswatch.com/flatly/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://bootswatch.com/slate/bootstrap.min.css" />
     <style type="text/css">
-        body { text-align: center; }
-        #players { margin: 0 auto; width: 250px; text-align: left; max-width:250px; } 
-        .box { width:14px; height:14px; display:inline-block; margin:0 5px; border:solid #CCCCCC 1px; }
-        .green { background:#00FF00; }
-        .red { background:#FF0000; }
-        .blue { background:#0000FF; }
-        .pink { background:#FF00FF; }
-        .yellow { background:#FFFF00; }
-        .white { background:#FFFFFF; }
+      body { font-size:11pt; }
+      .panel-heading > .title { font-weight:bold; font-size:1.25em; display:inline-block; }
+      .panel-heading > .subtitle { font-style:italic; display:inline-block; margin-left:1em; }
+      .box { display:inline-block; margin:0 5px; text-align:center; font-family:courier; font-size:1.25em; border:2px solid #101010; padding:.15em .5em }
+      .grid { height:auto; margin:0 auto; text-align:center; }
+      .grid th { text-align:center; font-weight:bold; font-size:1.5em;padding:0 .5em; }
+      .grid td { text-align:center; font-family:courier; font-size:1.25em; border:2px solid #101010; padding:.5em 1em }
+      .green { background:#00FF00; color:#000000; }
+      .red { background:#FF0000; color:#000000; }
+      .blue { background:#0000FF; color:#FFFFFF; }
+      .pink { background:#FF00FF; color:#000000; }
+      .yellow { background:#FFFF00; color:#000000; }
+      .white { background:#FFFFFF; color:#000000; }
+      .black { background:#000000; color:#FF0000; }
+      .grey { background:#292E32; color:#000000; }
     </style>
   </head>
   <body>
-    <div id="players" class="container">
-        <div class="row">
-          <div class="col-xs-4"><div class="red box"></div><input type="checkbox"/></div>
-          <div class="col-xs-4"><div class="yellow box"></div><input type="checkbox"/></div>
-          <div class="col-xs-4"><div class="blue box"></div><input type="checkbox"/></div>
+    <div class="container">
+      <div class="row" id="setup">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10">
+
+          <div class="panel panel-primary">
+            <div class="panel-heading"><span class="title">Players</span></div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-xs-6"><label for="red"><input type="checkbox" id="red"/><div class="red box">R</div>Red</label></div>
+                <div class="col-xs-6"><label for="yellow"><input type="checkbox" id="yellow"/><div class="yellow box">Y</div>Yellow</label></div>
+              </div>
+              <div class="row">
+                <div class="col-xs-6"><label for="blue"><input type="checkbox" id="blue"/><div class="blue box">B</div>Blue</label></div>
+                <div class="col-xs-6"><label for="white"><input type="checkbox" id="white"/><div class="white box">W</div>White</label></div>
+              </div>
+              <div class="row">
+                <div class="col-xs-6"><label for="green"><input type="checkbox" id="green"/><div class="green box">G</div>Green</label></div>
+                <div class="col-xs-6"><label for="pink"><input type="checkbox" id="pink"/><div class="pink box">P</div>Pink</label></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel panel-primary">
+            <div class="panel-heading"><span class="title">Difficulty</span><span class="subtitle">(extra cards)</span></div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-xs-3"><label for="d2"><input type="radio" value="2" id="d2" name="difficulty"/>+2</label></div>
+                <div class="col-xs-3"><label for="d3"><input type="radio" value="3" id="d3" name="difficulty" checked="checked"/>+3</label></div>
+                <div class="col-xs-3"><label for="d4"><input type="radio" value="4" id="d4" name="difficulty"/>+4</label></div>
+                <div class="col-xs-3"><label for="d5"><input type="radio" value="5" id="d5" name="difficulty"/>+5</label></div>
+              </div>
+            </div>
+          </div>
+
+          <a href="#" onclick="return createGame();" class="btn btn-primary">Generate</a>
         </div>
-        <div class="row row-centered">
-          <div class="col-xs-4"><div class="white box"></div><input type="checkbox"/></div>
-          <div class="col-xs-4"><div class="pink box"></div><input type="checkbox"/></div>
-          <div class="col-xs-4"><div class="green box"></div><input type="checkbox"/></div>
+      </div>
+
+      <div class="row" id="game">
+        <div class="col-xs-12">
+
+          <div class="panel panel-primary">
+            <div class="panel-heading"><span class="title">Game</span><span class="subtitle" id="game-id"></span></div>
+            <div class="panel-body" id='grid'>
+
+            </div>
+          </div>
+
+          <a href="#" onclick="return back();">&lt; back</a>
         </div>
+      </div>
     </div>
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="game.js"></script>
   </body>
 </html>
