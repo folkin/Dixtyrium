@@ -47,7 +47,7 @@ function renderGame(id) {
   var cards;
 
   $tr = $('<tr><th>&nbsp;</th></tr>');
-  for (i = 0; i < values.cards; i++) {
+  for (i = 1; i <= values.cards; i++) {
     $tr.append('<th>' + i + '</th>');
   }
   $table.append($tr);
